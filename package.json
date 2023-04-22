@@ -31,6 +31,7 @@
     "react-simple-scroll-up": "^0.2.3",
     "react-slick": "^0.29.0",
     "sass": "^1.60.0",
+    "sharp": "^0.32.0",
     "slick-carousel": "^1.8.1",
     "swiper": "^9.2.3",
     "typescript": "5.0.2"
