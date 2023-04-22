@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./KobSliderItems.module.scss";
 import { Button } from "../Button/Button";
 import { KobSliderItemsProps } from "./KobSliderItems.props";
+import Image from 'next/image';
 
 export const KobSliderItems = ({ props }: KobSliderItemsProps) => {
   const { img, title, description, link } = props;
@@ -15,10 +16,12 @@ export const KobSliderItems = ({ props }: KobSliderItemsProps) => {
         </div>
       </div>
       <div className={styles.right}>
-        <img
+        <Image
           className={styles.img}
           src={img}
           alt="error"
+          width={576}
+          height={500}
         />
       </div>
     </div>
