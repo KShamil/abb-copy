@@ -1,0 +1,483 @@
+const validationDefaults = {
+    errorColor: 'red',
+    defaultColor: '#dcdcdc',
+};
+
+
+const formValidation = (selector, options = {}) => {
+    const $formParsley = $(selector);
+
+    const parsleyDefaults = {
+        excluded: 'input[type=button], input[type=submit], input[type=reset], input[type=hidden], [disabled]',
+        errorsContainer: (field) => {
+            // Special if For OTP desktop
+            if (field.element.parentElement.id === 'js-otp-desk') {
+                // console.log($(field.element).closest(".js-otp-code-required-error"))
+                return $(".js-otp-code-required-error");
+            } else if ( field.element.classList.contains("js-card-order-fle-input") ) {
+                // special for priveleged customer file input
+                return $(field.element).closest(".js-card-order-file-container")
+            } else {
+                if (field.element.type === 'file' || field.element.type === 'radio') {
+                    return $(field.element).closest("label").parent();
+                }
+                else if (field.element.type.includes('select')) {
+                    // console.log($(field.element).closest("span"));
+                    return $(field.element).closest(".selectric-wrapper").parent();
+                }
+                else {
+                    return $(field.element).closest(".input-container");
+                }
+            }
+        },
+        errorsWrapper: '<ul class="list-reset parsley-errors-list"></ul>',
+        errorTemplate: '<li class="parsley-error-li mt-2 color-error fw-500 fs-14"></li>'
+    };
+
+    if($formParsley.length) {
+
+        if('init' in options && options.init instanceof Function) {
+
+            options.init.call(formValidation, selector);
+        }
+
+        let isSubmitted = false;
+        let lastInputObj;
+        $formParsley.each((i, form) => {
+            $(form).parsley(parsleyDefaults).on('form:validated', e => {
+                isSubmitted = true;
+                lastInputObj = e.fieldsMappedById[Object.keys(e.fieldsMappedById)[Object.keys(e.fieldsMappedById).length - 1]];
+
+                // on form:validated - e.element is current form
+                __fileValidation(e.element);
+                __selectValidation(e.element);
+            });
+        })
+
+
+        $formParsley.each((i, form) => {
+            $(form).parsley(parsleyDefaults).on('field:validated', (e) => {
+                if(isSubmitted) {
+                    if(e === lastInputObj) {
+                        isSubmitted = false;
+                    }
+
+                    __formStepping(e.element);
+                    return false;
+                }
+
+                // on field:validated - e.element is current input
+                const getType = $(e.element).attr('type');
+                if(getType === 'file') {
+                    __fileTextChange(e.element);
+                    __fileValidation(e.element);
+                }
+
+                if($(e.element).is('select')) {
+                    __selectValidation(e.element);
+                }
+
+                if('formStep' in options && options.formStep instanceof Function) {
+                    options.formStep.call(formValidation, e.element);
+                }
+            });
+        })
+
+        $formParsley.each((i, form) => {
+            $(form).parsley(parsleyDefaults).on('form:submit', (e) => {
+                e.element.querySelectorAll("button[type=submit], input[type=submit]").forEach(btn => {
+                    console.log(btn);
+                    btn.disabled = true
+                })
+            });
+        })
+
+        if ($formParsley.attr('id') === 'js-card-order'){
+
+            $formParsley.parsley(parsleyDefaults).on('form:submit', (e) => {
+                const $submitButton =  $formParsley.find('button[type=submit]');
+                const $submitButtonNormal = $submitButton.find('.js-submit-normal');
+                const $submitButtonLoading = $submitButton.find('.js-submit-loading');
+                const $serverErrorMessage = $formParsley.find('.js-server-error');
+
+                if ($formParsley.find("input[name=must_delivery]")[0].value === "disabled") {
+                    $submitButton.addClass("button-disabled");
+                    $submitButtonNormal.removeClass("d-flex");
+                    $submitButtonNormal.addClass("d-none");
+                    $submitButtonLoading.removeClass("d-none");
+                    $serverErrorMessage.addClass("d-none");
+
+                    $.ajax({
+                        url: $('#js-card-order').attr('action'),
+                        type: 'post',
+                        data: new FormData($formParsley[0]),
+                        mimeType: "multipart/form-data",
+                        cache: false,
+                        processData: false,
+                        contentType: false,
+                        success: function(result) {
+                            var json = JSON.parse(result);
+                            if(!json.form){
+                                $formParsley.hide()
+                                $('.success_message').removeClass('d-none');
+                            }else{
+                                $('.hidden').html(json.form);
+                                $('.hidden').find('form').submit();
+                            }
+                        },
+                        error: (error) => {
+                            $submitButton.removeClass("button-disabled");
+                            $submitButton.attr('disabled', false);
+                            $submitButtonNormal.removeClass("d-none");
+                            $submitButtonNormal.addClass("d-flex");
+                            $submitButtonLoading.addClass("d-none");
+
+                            try {
+                                const res = JSON.parse(error.responseText);
+
+                                if (parseInt(res?.status) === 1 && res?.message) {
+                                    $serverErrorMessage.text(res.message);
+                                    $serverErrorMessage.removeClass("d-none");
+                                }
+                            } catch (err) {
+                                console.error(err)
+                            }
+
+                            ajaxFormErrorHandler(error)
+                        }
+                    });
+                    return false;
+                }
+            });
+            return false;
+        }
+
+        if ($formParsley.attr('id') === 'js-statement-order'){
+            $formParsley.parsley(parsleyDefaults).on('form:submit', (e) => {
+                const $submitButton =  $formParsley.find('button[type=submit]');
+                $submitButton.addClass("button-disabled");
+                const data = new FormData($formParsley[0]);
+                data.set("card_number", $formParsley.find('input[name=card_number]')[0].inputmask.unmaskedvalue())
+                $.ajax({
+                    url: $('#js-statement-order').attr('action'),
+                    type: 'post',
+                    data: data,
+                    cache: false,
+                    processData: false,
+                    contentType: false,
+                    success: function(result) {
+                        console.log((result))
+                        // var json = JSON.parse(result);
+                        $('.hidden').html(result.form);
+                        $('.hidden').find('form').submit();
+                    },
+                    error: ajaxFormErrorHandler
+                });
+                return false;
+            });
+            return false;
+        }
+
+        if ($formParsley.hasClass('js-fin-check-form')){
+            $formParsley.filter(".js-fin-check-form").each((i, form) => {
+                const $form = $(form);
+                $form.parsley(parsleyDefaults).on('form:submit', (e) => {
+                    const $submitButton = $form.find('button[type=submit]');
+                    $submitButton.addClass("button-disabled");
+
+                    $.ajax({
+                        url: $form.attr("action"),
+                        type: 'post',
+                        data: $form.serialize(),
+                        success: function (result) {
+                            $form.closest(".enterFinModal").modal("hide");
+
+                            switch (result.status) {
+                                case "NOT_PRIVILEGED_CUSTOMER": {
+                                    result.standard_order
+                                        ? $(".notPrivModal .js-not-priv-link").show().attr("href", result?.standard_order)
+                                        : $(".notPrivModal .js-not-priv-link").hide().attr("href", "")
+                                    $(".notPrivModal").modal("show");
+                                    break;
+                                }
+                                case "NOT_SPECIAL_PRIVILEGED_CUSTOMER": {
+                                    result.standard_order
+                                        ? $(".notSpecialPrivModal .js-not-priv-link").show().attr("href", result?.standard_order)
+                                        : $(".notSpecialPrivModal .js-not-priv-link").hide().attr("href", "")
+                                    $(".notSpecialPrivModal").modal("show");
+                                    break;
+                                }
+                                case "SUCCESS": {
+                                    $form.closest(".js-priv-card-container").find(".privFormModal").modal("show");
+                                    $form.closest(".js-priv-card-container").find(".js-fin-in-card-order-form").val($form.find("[name=checking_pin").val())
+                                    break;
+                                }
+                            }
+                        },
+                        error: ajaxFormErrorHandler
+                    });
+                    return false;
+                });
+            })
+        }
+
+        if ($formParsley.hasClass('js-priv-card-order-form')){
+            $formParsley.filter(".js-priv-card-order-form").each((i, form) => {
+                const $form = $(form);
+                $form.parsley(parsleyDefaults).on('form:submit', (e) => {
+                    const $submitButton = $form.find('button[type=submit]');
+                    $submitButton.addClass("button-disabled");
+                    $submitButton.attr("disabled", true);
+
+                    const formData = new FormData($form.get(0))
+
+
+                    $.ajax({
+                        url: $form.attr("action"),
+                        type: 'post',
+                        data: formData,
+                        mimeType: "multipart/form-data",
+                        cache: false,
+                        processData: false,
+                        contentType: false,
+                        success: function (responseJson) {
+                            const response = JSON.parse(responseJson);
+                            console.log(response)
+
+                            if (response?.phone_number) {
+                                const otpHandler = $(".js-card-order-otp-modal .js-otp-form").get(0).otpReference;
+                                clearInterval(otpHandler.interval);
+                                otpHandler.timer.html("02:00");
+                                otpHandler.countdown(120, otpHandler.timer)
+                                $("#js-otp-mobile-number").text(response.phone_number)
+                                $("#js-otp-submit").prop("disabled", false)
+                                $(".js-card-order-otp-modal").modal("show");
+                            } else if (response?.form) {
+                                $('.js-form-response').html(response?.form);
+                                $('.js-form-response').find('form').submit();
+                            }
+                        },
+                        error: ajaxFormErrorHandler,
+                        complete: () => $submitButton.attr("disabled", false)
+                    });
+                    return false;
+                });
+            })
+        }
+
+        if ($formParsley.attr('id') === 'js-ipoteka-form') {
+            $formParsley.each((i, form) => {
+                $(form).parsley(parsleyDefaults).on('form:submit', (e) => {
+                    const $submitButton = $(form).find('button[type=submit]');
+                    $submitButton.addClass("button-disabled").attr('disabled', true);
+
+                    var data = $(form).serializeArray();
+                    const typeMortage = data.find(field => field.name === 'type_mortgage').value;
+                    data[data.findIndex(field => field.name === 'mobile_phone')].value = $(form).find(".js-mob-number")[0].inputmask.unmaskedvalue();
+
+                    var is_customer,
+                        amount_of_residence = 0,
+                        credit_term,
+                        amount_of_yigim = 0,
+                        deposit_term;
+                    if (typeMortage === 'by_residence') {
+                        is_customer = $('#js-selectric-credit-0').val()
+                        amount_of_residence = $('#js-range-slider-2').val()
+                        credit_term = $('#js-range-slider-21').val()
+                        deposit_term = $('#js-selectric-credit-5').val()
+                    } else {
+                        is_customer = $('#js-selectric-credit-1').val()
+                        amount_of_yigim = $('#js-range-slider-1').val()
+                        deposit_term = $('#js-selectric-credit-3').val()
+                        credit_term = $('#js-range-slider-12').val()
+                    }
+
+                    if (deposit_term === '')
+                        deposit_term = '12';
+
+                    data.push({name: "is_customer", value: is_customer});
+                    data.push({name: "credit_term", value: credit_term});
+                    data.push({name: "deposit_term", value: deposit_term});
+                    data.push({name: "amount_of_residence", value: amount_of_residence});
+                    data.push({name: "monthly_deposit", value: amount_of_yigim});
+                    $(form).find('input[name=is_customer]').val(is_customer)
+                    $(form).find('input[name=credit_term]').val(credit_term)
+                    $(form).find('input[name=deposit_term]').val(deposit_term)
+                    $(form).find('input[name=amount_of_residence]').val(amount_of_residence)
+                    $(form).find('input[name=monthly_deposit]').val(amount_of_yigim)
+
+                });
+            })
+        }
+    }
+};
+
+
+const __formStepping = (selector) => {
+    const $form = $(selector).parents('form').first();
+    const stepIndex = $(selector).parents('.js-form-step').index();
+    const $stepCurrent = $form.find('.js-form-step').eq(stepIndex);
+    const countInputs = $stepCurrent.find('.js-input-check').length;
+    const countSuccess = $stepCurrent.find('.js-input-check').find('.parsley-success, input[type=range]').length;
+
+    if($stepCurrent.find('.js-input-check').find('.parsley-error').length) {
+        $stepCurrent.nextAll('.js-form-step').stop().slideUp();
+    }
+
+    const calc = Math.floor(100 / (countInputs / countSuccess));
+    if(calc === 100) {
+        if($('#js-credit-order').length) {
+            save_credit_log();
+        }
+        $stepCurrent.next('.js-form-step').slideDown();
+
+    }
+    $stepCurrent.find('.js-step-percentage').text(calc);
+};
+
+
+const __selectChange = element => {
+    let borderColor = validationDefaults.defaultColor;
+    const parsleyClasses = ['parsley-success', 'parsley-error'];
+
+    if($(element).find('option:checked').val() === '') {
+        borderColor = validationDefaults.errorColor;
+        parsleyClasses.reverse();
+    } else {
+        $(element).closest('.selectric-wrapper').parent().find('.parsley-error-li').remove();
+    }
+    $(element).parents('.selectric-wrapper').first().find('.selectric').css('border-color', borderColor).end().find('select').addClass(parsleyClasses[0]).removeClass(parsleyClasses[1]);
+};
+
+
+const __selectValidation = (selector, options = {}) => {
+    if(!Object.keys(options).length) {
+        options = validationDefaults;
+    }
+
+    // if form(form:validated) then find ALL selectric, if select(field:validated) then find current selectric
+    const $selector = ($(selector).is('form')) ? $(selector).find('.selectric-wrapper') : $(selector).parents('.selectric-wrapper').first();
+
+    $selector.each((i, el) => {
+        $(el).find('.selectric').css('border-color', options.errorColor);
+
+        if($(el).find('select').hasClass('parsley-success')) {
+            $(el).find('.selectric').css('border-color', options.defaultColor);
+        }
+    });
+};
+
+
+$('input[type=file]').on('change', e => {
+    __fileTextChange(e.target);
+    __fileValidation(e.target);
+});
+
+
+const __fileTextChange = (element) => {
+    const text = (element.files.length) ? element.files[0].name : element.dataset.defaultText;
+    $(element).siblings('span').text(text);
+};
+
+
+const __fileValidation = (selector, options = {}) => {
+    if(!Object.keys(options).length) {
+        options = validationDefaults;
+    }
+
+    const $selector = ($(selector).is('form')) ? $(selector).find('input[type=file]') : $(selector);
+
+    $selector.each((i, el) => {
+        const $label = $(el).parent();
+        $label.css('border-color', options.errorColor);
+
+        if($(el).hasClass('parsley-success')) {
+            $label.css('border-color', options.defaultColor);
+        }
+    });
+};
+
+
+window.Parsley.addValidator('extensionCheck', {
+    requirementType: 'string',
+    validateString: (value, requirement, formInstance) => {
+        let isValid = false;
+        const fileList = formInstance.element.files;
+
+        if(fileList.length) {
+            const extensions = requirement.replace(/\s/g, '').toLowerCase().split(',');
+            const ext = fileList[0].name.substr(fileList[0].name.lastIndexOf('.') + 1).toLowerCase();
+
+            const mimeTypes = {
+                png: 'image/png',
+                jpg: 'image/jpeg',
+                jpeg: 'image/jpeg',
+                gif: 'image/gif',
+                doc: 'application/msword',
+                docx: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                pdf: 'application/pdf'
+            };
+
+            isValid = ((extensions.indexOf(ext) !== -1) && (mimeTypes[ext] === fileList[0].type));
+        }
+
+        return isValid;
+    }
+});
+
+
+window.Parsley.addValidator('sizeCheck', {
+    requirementType: 'string',
+    validateString: function(value, requirement, formInstance) {
+        let isValid = false;
+        const fileList = formInstance.element.files;
+
+        if(fileList.length) {
+            isValid = (requirement * 1024 > fileList[0].size);
+        }
+
+        return isValid;
+    }
+});
+
+window.Parsley.addValidator('adult', {
+    requirementType: 'string',
+    validateString: function(value) {
+        let isValid = false;
+        const [day, month, year] = value.split('/');
+
+        const date = new Date(year, month - 1, day);
+
+        if(date instanceof Date) {
+            const eighteenYearsAgo = new Date();
+            eighteenYearsAgo.setFullYear(eighteenYearsAgo.getFullYear() - 18);
+
+            isValid = (date.getTime() <= eighteenYearsAgo.getTime());
+        }
+
+        return isValid;
+    },
+    priority: 32
+});
+
+
+window.Parsley.addValidator('older', {
+    requirementType: 'string',
+    validateString: function(value) {
+        let isValid = false;
+        const [day, month, year] = value.split('/');
+
+        const date = new Date(year, month - 1, day);
+
+        if(date instanceof Date) {
+            const twentyFiveYearsAgo = new Date();
+            twentyFiveYearsAgo.setFullYear(twentyFiveYearsAgo.getFullYear() - 26);
+
+            isValid = (date.getTime() > twentyFiveYearsAgo.getTime());
+        }
+
+        return isValid;
+    }
+
+});
+

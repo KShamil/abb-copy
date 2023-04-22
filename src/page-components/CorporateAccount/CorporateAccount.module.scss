@@ -1,0 +1,201 @@
+.wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 10px;
+    
+
+    .leftCard {
+        position: relative;
+        width: 50%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: #3c474e;
+
+        .info {
+            margin-left: 120px;
+            margin-bottom: 160px;
+
+            h2 {
+                font-size: 25px;
+                line-height: 34px;
+                color: #FFFFFF;
+                margin-bottom: 20px;
+            }
+
+            span {
+                color: #FFFFFF;
+            }
+
+            .link {
+                color: #FFFFFF;
+                position: absolute;
+                left: 120px;
+                bottom: 40px;
+            }
+        }
+
+        .image {
+            overflow: hidden;
+            .img {
+                transform: translateY(40px);
+            }
+        }
+
+
+    }
+
+    .rightCard {
+        position: relative;
+        width: 50%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: #3c435e;
+        overflow: hidden;
+
+        .info {
+            margin-left: 50px;
+            margin-bottom: 170px;
+
+            h2 {
+                font-size: 25px;
+                line-height: 34px;
+                color: #FFFFFF;
+                margin-bottom: 20px;
+                
+            }
+
+            span {
+                color: #FFFFFF;
+            }
+
+            .link {
+                position: absolute;
+                left: 50px;
+                bottom: 40px;
+                color: #FFFFFF;
+            }
+        }
+
+        .image {
+            margin-right: 120px;
+            transform: translateY(30px);
+        }
+
+    }
+}
+
+@media screen and (max-width:1450px) {
+    .wrapper {
+        flex-direction: column;
+        padding: 15px;
+
+        .leftCard {
+            width: 100%;
+
+            .info {
+                margin-left: 50px;
+
+                .link {
+                    left: 50px;
+                }
+            }
+        }
+
+        .rightCard {
+            width: 100%;
+        }
+    }
+
+
+}
+
+@media screen and (max-width:768px) {
+    .wrapper {
+
+        .leftCard {
+            .info {
+                margin-left: 10px;
+
+                .link {
+                    left: 10px;
+                }
+            }
+
+            .image {
+                .img {
+                    width: 100%;
+                    height: auto;
+                }
+            }
+        }
+
+        .rightCard {
+            .info {
+                margin-left: 10px;
+
+                .link {
+                    left: 10px;
+                }
+            }
+
+            .image {
+                margin-right: 0;
+                .img {
+                    width: 100%;
+                    height: auto;
+                }
+            }
+        }
+    }
+
+
+}
+
+@media screen and (max-width:600px) {
+    .wrapper {
+
+        .leftCard {
+            padding-top: 10px;
+            padding-bottom: 10px;
+
+            .info {
+                h2 {
+                    font-size: 15px;
+                }
+
+                span {
+                    font-size: 15px;
+                }
+            }
+
+            .image {
+                .img {
+                    align-self: bottom;
+                }
+            }
+
+        }
+
+        .rightCard {
+            padding-top: 10px;
+            padding-bottom: 10px;
+
+            .info {
+                h2 {
+                    font-size: 15px;
+                }
+
+                span {
+                    font-size: 15px;
+                }
+            }
+
+        }
+    }
+
+
+}

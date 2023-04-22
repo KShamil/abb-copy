@@ -1,0 +1,37 @@
+.wrapper {
+    position: relative;
+    padding: 48px;
+    background: #484d52;
+    width: 396px;
+    min-height: 480px;
+    border-radius: 10px;
+
+    .image {
+        margin-bottom: 20px;
+    }
+
+    .info {
+        margin-bottom: 40px;
+        h4 {
+            font-size: 22px;
+            color: #FFFFFF;
+            margin-bottom: 15px;
+        }
+        span {
+            font-size: 15px;
+            color: #FFFFFF;
+            word-wrap: break-word;
+        }
+    }
+
+    .link {
+        position: absolute;
+        left: 48px;
+        bottom: 50px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 5px;
+        color: #FFFFFF;
+    }
+}

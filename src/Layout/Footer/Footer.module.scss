@@ -1,0 +1,228 @@
+.footer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    .top {
+        width: 100%;
+        min-height: 65px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 150px;
+
+        .internetBanking {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            color: #0056c1;
+            font-weight: bold;
+            cursor: pointer;
+
+            .icon {
+                transition: 0.5s all;
+            }
+
+            &:hover .icon {
+                transform: translateX(5px);
+            }
+        }
+    }
+
+    .middle {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: #F9F9F9;
+
+        .middleTop {
+            width: 100%;
+            padding: 25px 150px;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+
+
+            .list {
+                list-style: none;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: flex-start;
+                gap: 20px;
+
+                li {
+                    .link {
+                        font-size: 15px;
+                        color: #666666;
+                        padding-bottom: 2px;
+
+                        .bold {
+                            font-size: 18px;
+                            font-weight: bold;
+                        }
+
+                        &:hover {
+                            border-bottom: 2px solid #666666;
+                        }
+                    }
+                }
+            }
+        }
+
+        .middleCenter {
+            width: 100%;
+            display: flex;
+            justify-content: flex-start;
+            padding: 0 150px;
+
+            .mobileApp {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+
+                .box {
+                    padding: 16px;
+                    background: #ECECEC;
+                    display: flex;
+                    justify-content: center;
+                    gap: 5px;
+                    border-radius: 6px;
+                    cursor: pointer;
+
+                    .info {
+                        display: flex;
+                        flex-direction: column;
+
+                        span {
+                            &:nth-child(1) {
+                                font-size: 9px;
+                            }
+                            &:nth-child(2) {
+                                font-size: 14px;
+                            }
+
+                        }
+                    }
+                }
+            }
+        }
+
+        .middleBottom {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-top: 50px;
+            margin-bottom: 40px;
+            padding: 0 150px;
+
+            .logos {
+                display: flex;
+                justify-content: center;
+                align-items: baseline;
+                gap: 20px;
+            }
+
+            .icons {
+                display: flex;
+                justify-content: center;
+                align-items: baseline;
+                gap: 20px;
+
+                .instagram {
+                    color: #c13584; 
+                }
+
+                .facebook {
+                    color:#3b5998;
+                }
+
+                .youtube {
+                    color:#ff0000;
+                }
+
+                .twitter {
+                    color:#36D8FF;
+                }
+
+                .linkedin {
+                    color:#0077b5;
+                }
+            }
+        }
+    }
+}
+
+
+@media screen and (max-width:1200px) {
+    .footer {
+        .middle {
+            .middleTop {
+                display: none;
+            }
+        }
+    }
+}
+
+@media screen and (max-width:992px) {
+    .footer {
+        .top {
+            padding: 0 15px;
+        }
+        .middle {
+            .middleCenter {
+                padding: 0 15px;
+                margin-top: 20px;
+                .mobileApp {
+                    flex-wrap: wrap;
+                    justify-content: flex-start;
+                    align-items: flex-start;
+                }
+            }
+            .middleBottom {
+                flex-direction: column-reverse;
+                gap: 20px;
+                padding: 0 15px;
+
+                .icons {
+                    .instagram {
+                        font-size: 40px;
+                    }
+                    .facebook {
+                        font-size: 40px;
+                    }
+                    .twitter {
+                        font-size: 40px;
+                    }
+                    .linkedin {
+                        font-size: 40px;
+                    }
+                    .youtube {
+                        font-size: 40px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width:600px) {
+    .footer {
+        .top {
+            padding: 0 15px;
+
+            .internetBanking {
+                font-size: 14px;
+            }
+        }
+    }
+}

@@ -1,0 +1,66 @@
+.simpleCard {
+    position: relative;
+    width: 390px;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    background-color: #F2F5F8;
+    padding-left: 25px;
+    padding-top: 25px;
+    border-radius: 8px;
+
+    .left {
+        width: 65%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        .info {
+            margin-bottom: 100px;
+            
+            h4 {
+                font-size: 18px;
+                color: #262626;
+                margin-bottom: 10px;
+    
+            }
+    
+            span {
+                font-size: 15px;
+                color: #6F7071;
+                hyphens: auto;
+            }
+        }
+
+        .btn {
+            position: absolute;
+            left: 25px;
+            bottom: 30px;
+        }
+    }
+
+    .right {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
+}
+
+@media screen and (max-width:1250px){
+    .simpleCard {
+        width: 100%;
+    }
+}
+
+
+@media screen and (max-width:600px){
+    .simpleCard {
+       
+        .right {
+            .img {
+                width: 100%;
+                height: auto;
+            }
+        }
+    }
+}

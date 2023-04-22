@@ -9,14 +9,33 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@fortawesome/free-regular-svg-icons": "^6.4.0",
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@mui/icons-material": "^5.11.11",
+    "@mui/material": "^5.11.15",
     "@types/node": "18.15.11",
     "@types/react": "18.0.31",
+    "@types/react-bootstrap": "^0.32.32",
     "@types/react-dom": "18.0.11",
+    "classnames": "^2.3.2",
     "eslint": "8.37.0",
     "eslint-config-next": "13.2.4",
+    "framer-motion": "^10.11.2",
     "next": "13.2.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-multi-carousel": "^2.8.3",
+    "react-simple-scroll-up": "^0.2.3",
+    "react-slick": "^0.29.0",
+    "sass": "^1.60.0",
+    "slick-carousel": "^1.8.1",
+    "swiper": "^9.2.3",
     "typescript": "5.0.2"
+  },
+  "devDependencies": {
+    "@types/react-slick": "^0.23.10"
   }
 }

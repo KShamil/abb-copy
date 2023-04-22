@@ -1,0 +1,130 @@
+.wrapper {
+    width: 100%;
+    padding: 0 130px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    margin-top: 50px;
+    margin-bottom: 100px;
+
+    .top {
+        width: 100%;
+        h2 {
+            font-size: 36px;
+            color: var(--black);
+        }
+    }
+
+    .bottom {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: stretch;
+
+        .card {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+
+            .icon {
+                width: 75px;
+                height: 75px;
+                border-radius: 50%;
+                border: 1px solid #3b8ae0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .info {
+                position: relative;
+                width: 65%;
+                
+                h4 {
+                    font-size: 24px;
+                    margin-bottom: 10px;
+                }
+
+
+                .link {
+                    position: absolute;
+                    left: 0;
+                    bottom: -50px;
+                    display: flex;
+                    justify-content: center;
+                    align-items:center;
+                    gap: 5px;
+                    font-weight: bold;
+
+                    .linkIcon {
+                        font-size: 10px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+@media screen and (max-width:1400px) {
+    .wrapper {
+        padding: 0 40px;
+    }
+
+}
+
+@media screen and (max-width:1200px) {
+    .wrapper {
+        padding: 0 15px;
+    }
+
+}
+
+@media screen and (max-width:992px) {
+    .wrapper {
+        padding: 0 15px;
+
+        .bottom {
+            flex-direction: column;
+            gap: 80px;
+
+            .card {
+                justify-content: flex-start;
+            }
+        }
+    }
+
+}
+
+@media screen and (max-width:600px) {
+    .wrapper {
+
+        .top {
+            h2 {
+                font-size: 22px;
+            }
+        }
+
+        .bottom {
+            .card {
+                .info {
+                    h4 {
+                        font-size: 19px;
+                    }
+
+                    span {
+                        font-size: 14px;
+                    }
+
+                    .link {
+                        font-size: 13px;
+                    }
+                }
+            }
+        }
+    }
+
+}
