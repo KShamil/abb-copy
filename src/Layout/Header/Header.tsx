@@ -138,6 +138,44 @@ export const Header: React.FC = ({}: HeaderProps): JSX.Element => {
                 <Button appearance="header-btn">Karyera portalı</Button>
               </Link>
             </div>
+            <div className={styles.center}>
+              <ul className={styles.centerList}>
+                <li>
+                  <Link
+                    href="/"
+                    className={`${styles.centerLink} ${
+                      router.pathname === "/" ? styles.activeLink : ""
+                    }`}
+                  >
+                    Fərdi
+                  </Link>
+                </li>
+                <span className={styles.divider}>/</span>
+                <li>
+                  <Link
+                    href="/corporative"
+                    className={`${styles.centerLink} ${
+                      router.pathname === "/corporative"
+                        ? styles.activeLink
+                        : ""
+                    }`}
+                  >
+                    Korporativ
+                  </Link>
+                </li>
+                <span className={styles.divider}>/</span>
+                <li>
+                  <Link
+                    href="/kob"
+                    className={`${styles.centerLink} ${
+                      router.pathname === "/kob" ? styles.activeLink : ""
+                    }`}
+                  >
+                    KOB
+                  </Link>
+                </li>
+              </ul>
+            </div>
             <div className={styles.right}>
               <ul className={styles.list}>
                 <li onClick={handleOpenSeacrh} className={styles.listItem}>
@@ -338,14 +376,20 @@ export const Header: React.FC = ({}: HeaderProps): JSX.Element => {
                 <Link href="">Daxili ipoteka krediti</Link>
                 <Link href="">Tikinti krediti</Link>
                 <Link href="">İpoteka kalkulyatoru</Link>
-                <Link href="">Azərbaycan Respublikasının İpoteka və Kredit Zəmanət Fondunun vəsaiti hesabına verilən ipoteka kreditləri</Link>
+                <Link href="">
+                  Azərbaycan Respublikasının İpoteka və Kredit Zəmanət Fondunun
+                  vəsaiti hesabına verilən ipoteka kreditləri
+                </Link>
                 <Link href="">Hədiyyə Sertifikatı</Link>
               </div>
               <div className={styles.links}>
                 <Link href="">Mənzil krediti</Link>
                 <Link href="">ƏƏmanətli ipoteka krediti</Link>
                 <Link href="">Partnyor olun</Link>
-                <Link href="">Azərbaycan Respublikasının İpoteka və Kredit Zəmanət Fondunun vəsaiti hesabına verilən güzəştli (MİDA) ipoteka kreditləri</Link>
+                <Link href="">
+                  Azərbaycan Respublikasının İpoteka və Kredit Zəmanət Fondunun
+                  vəsaiti hesabına verilən güzəştli (MİDA) ipoteka kreditləri
+                </Link>
               </div>
             </div>
             <div className={styles.right}>
@@ -359,7 +403,9 @@ export const Header: React.FC = ({}: HeaderProps): JSX.Element => {
               </div>
               <div className={styles.info}>
                 <h4>Onlayn ipoteka müraciəti</h4>
-                <span>Aylıq ipoteka ödənişinizi hesablayın və müraciət edin</span>
+                <span>
+                  Aylıq ipoteka ödənişinizi hesablayın və müraciət edin
+                </span>
                 <Button appearance="slider-btn">Daha ətraflı</Button>
               </div>
             </div>

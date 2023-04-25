@@ -28,7 +28,6 @@
             span {
                 font-size: 15px;
                 color: #6F7071;
-                hyphens: auto;
             }
         }
 
@@ -40,6 +39,7 @@
     }
 
     .right {
+        padding-right: 10px;
         position: absolute;
         right: 0;
         bottom: 0;
@@ -55,12 +55,20 @@
 
 @media screen and (max-width:600px){
     .simpleCard {
-       
-        .right {
-            .img {
-                width: 100%;
-                height: auto;
+
+        .left {
+            .info {
+                span {
+                    font-size: 14px;
+                }
             }
         }
+       
+        // .right {
+        //     .img {
+        //         width: 100%;
+        //         height: auto;
+        //     }
+        // }
     }
 }

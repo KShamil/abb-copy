@@ -9,42 +9,42 @@ import { OperationsData } from '@/interfaces/interfaces';
 
 
 export async function getData(): Promise<CardData[]> {
-    const response = await fetch('http://localhost:3000/api/transitions');
+    const response = await fetch(process.env.NEXT_PUBLIC_DOMAIN + '/api/transitions');
     return await response.json()
 }
 
 export async function getOffersCardData(): Promise<OffersCardData[]> {
-    const response = await fetch('http://localhost:3000/api/offers');
+    const response = await fetch(process.env.NEXT_PUBLIC_DOMAIN + '/api/offers');
     return await response.json()
 }
 
 
 export async function getCorporativeData(): Promise<CorporativeData[]> {
-    const response = await fetch('http://localhost:3000/api/corporative');
+    const response = await fetch(process.env.NEXT_PUBLIC_DOMAIN +'/api/corporative');
     return await response.json()
 }
 
 export async function getBusinessCardData(): Promise<BusinessCardData[]> {
-    const response = await fetch('http://localhost:3000/api/business');
+    const response = await fetch(process.env.NEXT_PUBLIC_DOMAIN + '/api/business');
     return await response.json()
 }
 
 export async function getCorporateSliderItemsData(): Promise<CorporateSliderData[]> {
-    const response = await fetch('http://localhost:3000/api/corporatesliderdata');
+    const response = await fetch(process.env.NEXT_PUBLIC_DOMAIN + '/api/corporatesliderdata');
     return await response.json()
 }
 
 export async function getKobSliderItemsData(): Promise<KobSliderData[]> {
-    const response = await fetch('http://localhost:3000/api/kobsliderdata');
+    const response = await fetch(process.env.NEXT_PUBLIC_DOMAIN + '/api/kobsliderdata');
     return await response.json()
 }
 
 export async function getPersonalSliderItemsData(): Promise<PersonalSliderData[]> {
-    const response = await fetch('http://localhost:3000/api/personalsliderdata');
+    const response = await fetch(process.env.NEXT_PUBLIC_DOMAIN + '/api/personalsliderdata');
     return await response.json()
 }
 
 export async function getOperationsData(): Promise<OperationsData[]> {
-    const response = await fetch('http://localhost:3000/api/operations');
+    const response = await fetch(process.env.NEXT_PUBLIC_DOMAIN + '/api/operations');
     return await response.json()
 }

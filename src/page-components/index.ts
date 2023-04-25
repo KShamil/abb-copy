@@ -10,3 +10,4 @@ export * from './Support/Support';
 export * from './BusinessLoans/BusinessLoans';
 export * from './TradeFinance/TradeFinance';
 export * from './OtherOperations/OtherOperations';
+export * from './CreditCalculator/CreditCalculator';

@@ -45,6 +45,26 @@
             }
         }
 
+        .center {
+            display: none;
+            .centerList {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 5px;
+                list-style: none;
+
+                .centerLink {
+                    font-size: 14px;
+                }
+
+                .activeLink {
+                    color: black;
+                    font-weight: bold;
+                }
+            }
+        }
+
         .right {
             .list {
                 display: flex;
@@ -378,6 +398,18 @@
 
 @media screen and (max-width:600px) {
     .header {
+
+        .top {
+            .center {
+                display: block;
+            }
+
+            .right {
+                .list {
+                    gap: 10px;
+                }
+            }
+        }
 
         .middle {
             .middleLeft {

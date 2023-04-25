@@ -6,7 +6,7 @@ import { getData, getOffersCardData, getPersonalSliderItemsData } from "@/servic
 import { CardData, OffersCardData, PersonalSliderData } from "@/interfaces/interfaces";
 import { OurOffers } from "@/components/OurOffers/OurOffers";
 import { Innovation } from '@/page-components/Innovation/Innovation';
-import { CurrencyConverter, News, PersonalCarousel } from '@/page-components';
+import { CreditCalculator, CurrencyConverter, News, PersonalCarousel } from '@/page-components';
 
 
 function Home({ card, offerCard,personalCarouselData }: { card: CardData[], offerCard: OffersCardData[],personalCarouselData: PersonalSliderData[] }):JSX.Element {
@@ -22,6 +22,7 @@ function Home({ card, offerCard,personalCarouselData }: { card: CardData[], offe
       <main className={styles.main}>
         <PersonalCarousel props={personalCarouselData}/>
         <SimpleTransitions card={card} />
+        <CreditCalculator/>
         <OurOffers offerCard={offerCard} />
         <CurrencyConverter/>
         <Innovation/>

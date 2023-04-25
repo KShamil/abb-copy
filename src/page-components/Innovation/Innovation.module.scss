@@ -31,6 +31,10 @@
             }
         }
 
+        .image {
+            align-self:bottom;
+        }
+
     }
 
     .rightCard {
@@ -149,10 +153,9 @@
             }
 
             .image {
-                .img {
-                    align-self: bottom;
-                }
+                transform: translateY(20px);
             }
+
 
         }
 
@@ -166,6 +169,39 @@
                 }
             }
 
+        }
+    }
+
+
+}
+
+@media screen and (max-width:400px) {
+    .wrapper {
+
+        .leftCard {
+            .image {
+                transform: translateY(30px);
+            }
+        }
+    }
+
+
+}
+
+
+@media screen and (max-width:320px) {
+    .wrapper {
+
+        .leftCard {
+            .image {
+                transform: translateY(63px);
+            }
+        }
+
+        .rightCard {
+            .image {
+                transform: translateY(45px);
+            }
         }
     }
 

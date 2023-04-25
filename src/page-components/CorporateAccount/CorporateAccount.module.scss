@@ -173,9 +173,7 @@
             }
 
             .image {
-                .img {
-                    align-self: bottom;
-                }
+                transform: translateY(10px);
             }
 
         }
@@ -192,6 +190,84 @@
                 span {
                     font-size: 15px;
                 }
+            }
+
+        }
+    }
+
+
+}
+
+
+@media screen and (max-width:450px) {
+    .wrapper {
+
+        .leftCard {
+
+            .image {
+                transform: translateY(20px);
+            }
+
+        }
+    }
+
+
+}
+
+
+@media screen and (max-width:400px) {
+    .wrapper {
+
+        .leftCard {
+
+            .image {
+                transform: translateY(30px);
+            }
+
+        }
+    }
+
+
+}
+
+@media screen and (max-width:350px) {
+    .wrapper {
+
+        .leftCard {
+
+            .image {
+                transform: translateY(50px);
+            }
+
+        }
+
+        .rightCard {
+
+            .image {
+                transform: translateY(50px);
+            }
+
+        }
+    }
+
+
+}
+
+@media screen and (max-width:320px) {
+    .wrapper {
+
+        .leftCard {
+
+            .image {
+                transform: translateY(70px);
+            }
+
+        }
+
+        .rightCard {
+
+            .image {
+                transform: translateY(65px);
             }
 
         }
