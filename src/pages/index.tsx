@@ -10,7 +10,6 @@ import { CreditCalculator, CurrencyConverter, News, PersonalCarousel } from '@/p
 
 
 function Home({ card, offerCard,personalCarouselData }: { card: CardData[], offerCard: OffersCardData[],personalCarouselData: PersonalSliderData[] }):JSX.Element {
-
   return (
     <>
       <Head>

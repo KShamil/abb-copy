@@ -9,42 +9,42 @@ import { OperationsData } from '@/interfaces/interfaces';
 
 
 export async function getData(): Promise<CardData[]> {
-    const response = await fetch(process.env.NEXT_PUBLIC_DOMAIN + '/api/transitions');
+    const response = await fetch(`${process.env.NEXT_PUBLIC_TRANSITIONS}`);
     return await response.json()
 }
 
 export async function getOffersCardData(): Promise<OffersCardData[]> {
-    const response = await fetch(process.env.NEXT_PUBLIC_DOMAIN + '/api/offers');
+    const response = await fetch(`${process.env.NEXT_PUBLIC_OFFERS}`);
     return await response.json()
 }
 
 
 export async function getCorporativeData(): Promise<CorporativeData[]> {
-    const response = await fetch(process.env.NEXT_PUBLIC_DOMAIN +'/api/corporative');
+    const response = await fetch(`${process.env.NEXT_PUBLIC_CORPORATE}`);
     return await response.json()
 }
 
 export async function getBusinessCardData(): Promise<BusinessCardData[]> {
-    const response = await fetch(process.env.NEXT_PUBLIC_DOMAIN + '/api/business');
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BUSINESS}`);
     return await response.json()
 }
 
 export async function getCorporateSliderItemsData(): Promise<CorporateSliderData[]> {
-    const response = await fetch(process.env.NEXT_PUBLIC_DOMAIN + '/api/corporatesliderdata');
+    const response = await fetch(`${process.env.NEXT_PUBLIC_CORPORATESLIDER}`);
     return await response.json()
 }
 
 export async function getKobSliderItemsData(): Promise<KobSliderData[]> {
-    const response = await fetch(process.env.NEXT_PUBLIC_DOMAIN + '/api/kobsliderdata');
+    const response = await fetch(`${process.env.NEXT_PUBLIC_KOBSLIDERDATA}`);
     return await response.json()
 }
 
 export async function getPersonalSliderItemsData(): Promise<PersonalSliderData[]> {
-    const response = await fetch(process.env.NEXT_PUBLIC_DOMAIN + '/api/personalsliderdata');
+    const response = await fetch(`${process.env.NEXT_PUBLIC_PERSONALSLIDERDATA}`);
     return await response.json()
 }
 
 export async function getOperationsData(): Promise<OperationsData[]> {
-    const response = await fetch(process.env.NEXT_PUBLIC_DOMAIN + '/api/operations');
+    const response = await fetch(`${process.env.NEXT_PUBLIC_OPERATIONS}`);
     return await response.json()
 }
