@@ -31,7 +31,7 @@ const Corporative = ({
 
 export default withLayout(Corporative);
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const corporativeCardData = await getCorporativeData();
   const businessCardData = await getBusinessCardData();
   const corporateSliderData = await getCorporateSliderItemsData();

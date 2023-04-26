@@ -27,7 +27,7 @@ const Kob = ({kobSliderData, operationsData}:{kobSliderData:KobSliderData[],oper
 
 export default withLayout(Kob);
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const kobSliderData = await getKobSliderItemsData();
   const operationsData = await getOperationsData();
 

@@ -33,7 +33,7 @@ function Home({ card, offerCard,personalCarouselData }: { card: CardData[], offe
 
 export default withLayout(Home);
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const card = await getData();
   const offerCard = await getOffersCardData();
   const personalCarouselData = await getPersonalSliderItemsData();
