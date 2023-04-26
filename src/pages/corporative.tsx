@@ -5,7 +5,7 @@ import { getBusinessCardData, getCorporateSliderItemsData, getCorporativeData } 
 import { BusinessCardData, CorporateSliderData, CorporativeData } from "@/interfaces/interfaces";
 import Head from "next/head";
 import { BusinessCardsCarousel } from '@/page-components/BusinessCardsCarousel/BusinessCardsCarousel';
-import { GetStaticProps } from 'next';
+import { GetServerSideProps } from 'next';
 
 
 const Corporative = ({
@@ -32,7 +32,7 @@ const Corporative = ({
 
 export default withLayout(Corporative);
 
-export async function getStaticProps({}:GetStaticProps) {
+export async function getServerSideProps({}:GetServerSideProps) {
   const corporativeCardData = await getCorporativeData();
   const businessCardData = await getBusinessCardData();
   const corporateSliderData = await getCorporateSliderItemsData();
