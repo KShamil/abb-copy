@@ -4,6 +4,7 @@ import { BusinessLoans, KobCarousel, KobNews, OtherOperations, Support, TradeFin
 import Head from "next/head";
 import { getKobSliderItemsData, getOperationsData } from '@/services/services';
 import { KobSliderData, OperationsData } from '@/interfaces/interfaces';
+import { GetStaticProps } from 'next';
 
 
 const Kob = ({kobSliderData, operationsData}:{kobSliderData:KobSliderData[],operationsData:OperationsData[]}):JSX.Element => {
@@ -27,7 +28,7 @@ const Kob = ({kobSliderData, operationsData}:{kobSliderData:KobSliderData[],oper
 
 export default withLayout(Kob);
 
-export async function getStaticProps() {
+export async function getStaticProps({}:GetStaticProps) {
   const kobSliderData = await getKobSliderItemsData();
   const operationsData = await getOperationsData();
 

@@ -7,6 +7,7 @@ import { CardData, OffersCardData, PersonalSliderData } from "@/interfaces/inter
 import { OurOffers } from "@/components/OurOffers/OurOffers";
 import { Innovation } from '@/page-components/Innovation/Innovation';
 import { CreditCalculator, CurrencyConverter, News, PersonalCarousel } from '@/page-components';
+import { GetStaticProps } from 'next';
 
 
 function Home({ card, offerCard,personalCarouselData }: { card: CardData[], offerCard: OffersCardData[],personalCarouselData: PersonalSliderData[] }):JSX.Element {
@@ -33,7 +34,7 @@ function Home({ card, offerCard,personalCarouselData }: { card: CardData[], offe
 
 export default withLayout(Home);
 
-export async function getStaticProps() {
+export async function getStaticProps({}:GetStaticProps) {
   const card = await getData();
   const offerCard = await getOffersCardData();
   const personalCarouselData = await getPersonalSliderItemsData();

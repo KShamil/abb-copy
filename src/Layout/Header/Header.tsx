@@ -210,6 +210,7 @@ export const Header: React.FC = ({}: HeaderProps): JSX.Element => {
               alt="error"
               width={110}
               height={50}
+              priority={true}
             />
           </div>
           <ul className={styles.middleList}>

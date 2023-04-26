@@ -22,6 +22,7 @@ export const PersonalSliderItems = ({props}:PersonalSliderItemsProps):JSX.Elemen
           alt="error"
           width={500}
           height={500}
+          priority={true}
         />
       </div>
     </div>

@@ -27,6 +27,7 @@ export const CorporateSliderItems = ({
           alt="error"
           width={500}
           height={500}
+          priority={true}
         />
       </div>
     </div>

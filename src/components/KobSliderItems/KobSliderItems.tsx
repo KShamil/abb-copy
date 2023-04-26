@@ -22,6 +22,7 @@ export const KobSliderItems = ({ props }: KobSliderItemsProps) => {
           alt="error"
           width={576}
           height={500}
+          priority={true}
         />
       </div>
     </div>
