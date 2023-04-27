@@ -26,7 +26,7 @@ export const KobCarousel = ({props}:KobCarouselProps):JSX.Element => {
           
         }
       >
-        {props.map(item => (
+        {props && props.map(item => (
             <SwiperSlide key={item.title}>
                 <KobSliderItems props={item}/>
             </SwiperSlide>

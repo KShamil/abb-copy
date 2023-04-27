@@ -26,7 +26,7 @@ export const CorporateCarousel = ({props}:CorporateCarouselProps):JSX.Element =>
           
         }
       >
-        {props.map(item => (
+        {props && props.map(item => (
             <SwiperSlide key={item.title}>
                 <CorporateSliderItems props={item}/>
             </SwiperSlide>

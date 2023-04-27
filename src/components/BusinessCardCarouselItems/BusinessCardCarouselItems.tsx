@@ -8,7 +8,7 @@ export const BusinessCardCarouselItems = ({
 }: BusinessCardCarouselItemsProps): JSX.Element => {
   return (
     <div className={styles.wrapper}>
-      {props.map((item) => (
+      {props && props.map((item) => (
         <BusinessCard key={item.title} businessCardInfo={item} />
       ))}
     </div>

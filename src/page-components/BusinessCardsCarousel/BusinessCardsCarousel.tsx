@@ -41,7 +41,7 @@ export const BusinessCardsCarousel = ({
             },
           }}
         >
-              {props.map(item => (
+              {props && props.map(item => (
                 <SwiperSlide key={item.img} className={styles.businessCards}>
                   <BusinessCard businessCardInfo={item}/>
                 </SwiperSlide>

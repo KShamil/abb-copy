@@ -24,7 +24,7 @@ export const PersonalCarousel = ({props}:PersonalCarouselProps):JSX.Element => {
             delay: 4000,
           }}
         >
-          {props.map((item) => (
+          {props && props.map((item) => (
             <SwiperSlide key={item.title}>
               <PersonalSliderItems props={item} />
             </SwiperSlide>

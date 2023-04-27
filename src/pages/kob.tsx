@@ -1,13 +1,25 @@
 import React from "react";
 import { withLayout } from "@/Layout/Layout";
-import { BusinessLoans, KobCarousel, KobNews, OtherOperations, Support, TradeFinance } from "@/page-components";
+import {
+  BusinessLoans,
+  KobCarousel,
+  KobNews,
+  OtherOperations,
+  Support,
+  TradeFinance,
+} from "@/page-components";
 import Head from "next/head";
-import { getKobSliderItemsData, getOperationsData } from '@/services/services';
-import { KobSliderData, OperationsData } from '@/interfaces/interfaces';
-import { GetServerSideProps, GetStaticProps } from 'next';
+import { getKobSliderItemsData, getOperationsData } from "@/services/services";
+import { KobSliderData, OperationsData } from "@/interfaces/interfaces";
+import { GetServerSideProps, GetStaticProps } from "next";
 
-
-const Kob = ({kobSliderData, operationsData}:{kobSliderData:KobSliderData[],operationsData:OperationsData[]}):JSX.Element => {
+const Kob = ({
+  kobSliderData,
+  operationsData,
+}: {
+  kobSliderData: KobSliderData[];
+  operationsData: OperationsData[];
+}): JSX.Element => {
   return (
     <>
       <Head>
@@ -15,11 +27,11 @@ const Kob = ({kobSliderData, operationsData}:{kobSliderData:KobSliderData[],oper
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <KobCarousel props={kobSliderData}/>
-        <Support/>
-        <BusinessLoans/>
-        <TradeFinance/>
-        <OtherOperations props={operationsData}/>
+        <KobCarousel props={kobSliderData} />
+        <Support />
+        <BusinessLoans />
+        <TradeFinance />
+        <OtherOperations props={operationsData} />
         <KobNews />
       </main>
     </>
@@ -28,11 +40,23 @@ const Kob = ({kobSliderData, operationsData}:{kobSliderData:KobSliderData[],oper
 
 export default withLayout(Kob);
 
-export async function getServerSideProps({}:GetServerSideProps) {
-  const kobSliderData = await getKobSliderItemsData();
-  const operationsData = await getOperationsData();
+export async function getServerSideProps({}: GetServerSideProps) {
+  try {
+    const kobSliderData = await getKobSliderItemsData();
+    const operationsData = await getOperationsData();
 
-  return {
-    props: { kobSliderData,operationsData }
-  };
+    if (!kobSliderData && !operationsData) {
+      return {
+        notFound: true,
+      };
+    }
+
+    return {
+      props: { kobSliderData, operationsData },
+    };
+  } catch {
+    return {
+      props: null,
+    };
+  }
 }

@@ -9,7 +9,7 @@ export const OtherOperations = ({props}:OtherOperationsProps):JSX.Element => {
     <div className={styles.content}>
       <h2>Digər əməliyyatlar</h2>
       <div className={styles.operations}>
-        {props.map((item) => (
+        {props && props.map((item) => (
           <OperationsCard key={item.title} props={item} />
         ))}
       </div>
