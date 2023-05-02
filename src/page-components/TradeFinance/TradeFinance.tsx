@@ -26,7 +26,12 @@ export const TradeFinance = ({ ...props }: TradeFinanceProps): JSX.Element => {
               </span>
               <div className={styles.link}>
                 <Link href="">Daha ətraflı</Link>
-                <FontAwesomeIcon icon={faChevronRight} className={styles.linkIcon}/>
+                <FontAwesomeIcon
+                  icon={faChevronRight}
+                  className={styles.linkIcon}
+                  width={12}
+                  height={12}
+                />
               </div>
             </div>
           </div>
@@ -41,7 +46,12 @@ export const TradeFinance = ({ ...props }: TradeFinanceProps): JSX.Element => {
               </span>
               <div className={styles.link}>
                 <Link href="">Daha ətraflı</Link>
-                <FontAwesomeIcon icon={faChevronRight} className={styles.linkIcon}/>
+                <FontAwesomeIcon
+                  icon={faChevronRight}
+                  className={styles.linkIcon}
+                  width={12}
+                  height={12}
+                />
               </div>
             </div>
           </div>
@@ -56,7 +66,12 @@ export const TradeFinance = ({ ...props }: TradeFinanceProps): JSX.Element => {
               </span>
               <div className={styles.link}>
                 <Link href="">Daha ətraflı</Link>
-                <FontAwesomeIcon icon={faChevronRight} className={styles.linkIcon}/>
+                <FontAwesomeIcon
+                  icon={faChevronRight}
+                  className={styles.linkIcon}
+                  width={12}
+                  height={12}
+                />
               </div>
             </div>
           </div>
