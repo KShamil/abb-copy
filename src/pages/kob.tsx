@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { withLayout } from "@/Layout/Layout";
 import {
   BusinessLoans,
@@ -9,8 +9,10 @@ import {
   TradeFinance,
 } from "@/page-components";
 import Head from "next/head";
+import DialogWindow from '@/components/Dialog/Dialog';
 
 const Kob = (): JSX.Element => {
+  const [showDialog] = useState<boolean>(true);
   return (
     <>
       <Head>
@@ -18,6 +20,7 @@ const Kob = (): JSX.Element => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
+      {showDialog && <DialogWindow />}
         <KobCarousel />
         <Support />
         <BusinessLoans />

@@ -5,8 +5,8 @@ import { CreditCalculatorProps } from "./CreditCalculator.props";
 export function CreditCalculator({
   ...props
 }: CreditCalculatorProps): JSX.Element {
-  const [loanAmount, setLoanAmount] = useState<number>(35000);
-  const [loanTerm, setLoanTerm] = useState<number>(60);
+  const [loanAmount, setLoanAmount] = useState<number>(1);
+  const [loanTerm, setLoanTerm] = useState<number>(1);
   const [interestRate, setInterestRate] = useState<number>(11.9);
 
   const handleLoanAmountChange = (
@@ -32,6 +32,19 @@ export function CreditCalculator({
       (1 - 1 / Math.pow(1 + monthlyInterestRate, loanTerm));
     return payment.toFixed(2);
   };
+
+  const totalAmount = (): string => {
+    const monthlyInterestRate = interestRate / 1200;
+    const total =
+      loanAmount *
+      ((monthlyInterestRate *
+        Math.pow(1 + monthlyInterestRate, loanTerm)) /
+        (Math.pow(1 + monthlyInterestRate, loanTerm) - 1));
+    return (total * loanTerm).toFixed(2);
+  };
+  
+  
+  
 
   return (
     <div {...props} className={styles.wrapper}>
@@ -83,8 +96,15 @@ export function CreditCalculator({
           </div>
         </div>
         <div className={styles.right}>
-          <div>
-            <h2>Monthly Payment: ${monthlyPayment()}</h2>
+          <div className={styles.payment}>
+            <div className={styles.info}>
+              <span>{monthlyPayment()} ₼</span>
+              <small>Aylıq ödəniş</small>
+            </div>
+            <div className={styles.info}>
+              <span>{totalAmount()} ₼</span>
+              <small>Ümumi məbləğ</small>
+            </div>
           </div>
         </div>
       </div>

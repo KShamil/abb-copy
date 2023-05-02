@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { withLayout } from "@/Layout/Layout";
 import {
   CorporateAccount,
@@ -8,9 +8,10 @@ import {
 } from "@/page-components";
 import Head from "next/head";
 import { BusinessCardsCarousel } from "@/page-components/BusinessCardsCarousel/BusinessCardsCarousel";
-
+import DialogWindow from '@/components/Dialog/Dialog';
 
 const Corporative = (): JSX.Element => {
+  const [showDialog] = useState<boolean>(true);
   return (
     <>
       <Head>
@@ -18,6 +19,7 @@ const Corporative = (): JSX.Element => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
+        {showDialog && <DialogWindow />}
         <CorporateCarousel />
         <CorporateAccount />
         <CorporativeBusiness />

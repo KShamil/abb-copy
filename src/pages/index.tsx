@@ -3,12 +3,19 @@ import styles from "@/styles/Home.module.scss";
 import { withLayout } from "@/Layout/Layout";
 import { SimpleTransitions } from "@/components/SimpleTransitions/SimpleTransitions";
 import { OurOffers } from "@/components/OurOffers/OurOffers";
-import { Innovation } from '@/page-components/Innovation/Innovation';
-import { CreditCalculator, CurrencyConverter, News, PersonalCarousel } from '@/page-components';
+import { Innovation } from "@/page-components/Innovation/Innovation";
+import {
+  CreditCalculator,
+  CurrencyConverter,
+  News,
+  PersonalCarousel,
+} from "@/page-components";
+import { useState } from "react";
+import DialogWindow from "@/components/Dialog/Dialog";
 
+function Home(): JSX.Element {
+  const [showDialog] = useState<boolean>(true);
 
-
-function Home():JSX.Element {
   return (
     <>
       <Head>
@@ -18,13 +25,14 @@ function Home():JSX.Element {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <PersonalCarousel />
-        <SimpleTransitions />
-        <CreditCalculator/>
-        <OurOffers />
-        <CurrencyConverter/>
-        <Innovation/>
-        <News/>
+          {showDialog && <DialogWindow />}
+          <PersonalCarousel />
+          <SimpleTransitions />
+          <CreditCalculator />
+          <OurOffers />
+          <CurrencyConverter />
+          <Innovation />
+          <News />
       </main>
     </>
   );

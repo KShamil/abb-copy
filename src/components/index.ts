@@ -7,3 +7,4 @@ export * from './CorporateSliderItems/CorporateSliderItems';
 export * from './KobSliderItems/KobSliderItems';
 export * from './PersonalSliderItems/PersonalSliderItems';
 export * from './OperationsCard/OperationsCard';
+export * from './Dialog/Dialog';
