@@ -8,8 +8,9 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import styles from './KobCarousel.module.scss';
 import { KobSliderItems } from '@/components';
+import { kobSliderData } from '@/data/data';
 
-export const KobCarousel = ({props}:KobCarouselProps):JSX.Element => {
+export const KobCarousel = ({...props}:KobCarouselProps):JSX.Element => {
   return (
     <>
     <div className={styles.carousel}>
@@ -26,7 +27,7 @@ export const KobCarousel = ({props}:KobCarouselProps):JSX.Element => {
           
         }
       >
-        {props && props.map(item => (
+        {kobSliderData && kobSliderData.map(item => (
             <SwiperSlide key={item.title}>
                 <KobSliderItems props={item}/>
             </SwiperSlide>

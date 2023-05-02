@@ -2,15 +2,13 @@ import Head from "next/head";
 import styles from "@/styles/Home.module.scss";
 import { withLayout } from "@/Layout/Layout";
 import { SimpleTransitions } from "@/components/SimpleTransitions/SimpleTransitions";
-import { getData, getOffersCardData, getPersonalSliderItemsData } from "@/services/services";
-import { CardData, OffersCardData, PersonalSliderData } from "@/interfaces/interfaces";
 import { OurOffers } from "@/components/OurOffers/OurOffers";
 import { Innovation } from '@/page-components/Innovation/Innovation';
 import { CreditCalculator, CurrencyConverter, News, PersonalCarousel } from '@/page-components';
-import { GetServerSideProps, GetStaticProps } from 'next';
 
 
-function Home({ card, offerCard,personalCarouselData }: { card: CardData[], offerCard: OffersCardData[],personalCarouselData: PersonalSliderData[] }):JSX.Element {
+
+function Home():JSX.Element {
   return (
     <>
       <Head>
@@ -20,10 +18,10 @@ function Home({ card, offerCard,personalCarouselData }: { card: CardData[], offe
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <PersonalCarousel props={personalCarouselData}/>
-        <SimpleTransitions card={card} />
+        <PersonalCarousel />
+        <SimpleTransitions />
         <CreditCalculator/>
-        <OurOffers offerCard={offerCard} />
+        <OurOffers />
         <CurrencyConverter/>
         <Innovation/>
         <News/>
@@ -34,11 +32,11 @@ function Home({ card, offerCard,personalCarouselData }: { card: CardData[], offe
 
 export default withLayout(Home);
 
-export async function getServerSideProps({}:GetServerSideProps) {
-  const card = await getData();
-  const offerCard = await getOffersCardData();
-  const personalCarouselData = await getPersonalSliderItemsData();
-  return {
-    props: { card, offerCard,personalCarouselData },
-  };
-}
+// export async function getServerSideProps({}:GetServerSideProps) {
+//   const card = await getData();
+//   const offerCard = await getOffersCardData();
+//   const personalCarouselData = await getPersonalSliderItemsData();
+//   return {
+//     props: { card, offerCard,personalCarouselData },
+//   };
+// }

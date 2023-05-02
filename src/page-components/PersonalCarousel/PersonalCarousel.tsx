@@ -8,11 +8,12 @@ import "swiper/css/pagination";
 import styles from './PersonalCarousel.module.scss';
 import { PersonalSliderItems } from '@/components';
 import { PersonalCarouselProps } from './PersonalCarousel.props';
+import { personalSliderData } from '@/data/data';
 
-export const PersonalCarousel = ({props}:PersonalCarouselProps):JSX.Element => {
+export const PersonalCarousel = ({...props}:PersonalCarouselProps):JSX.Element => {
   return (
     <>
-      <div className={styles.carousel}>
+      <div className={styles.carousel} {...props}>
         <Swiper
           navigation={false}
           modules={[Navigation, Pagination, Autoplay]}
@@ -24,7 +25,7 @@ export const PersonalCarousel = ({props}:PersonalCarouselProps):JSX.Element => {
             delay: 4000,
           }}
         >
-          {props && props.map((item) => (
+          {personalSliderData && personalSliderData.map((item) => (
             <SwiperSlide key={item.title}>
               <PersonalSliderItems props={item} />
             </SwiperSlide>

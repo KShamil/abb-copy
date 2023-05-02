@@ -5,11 +5,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { businessCardData } from '@/data/data';
 
 export const BusinessCard = ({
   businessCardInfo,...props
 }: BusinessCardProps): JSX.Element => {
   const { img, title, description, link } = businessCardInfo;
+  
   return (
     <>
       <div className={styles.wrapper} {...props}>

@@ -9,17 +9,8 @@ import {
   TradeFinance,
 } from "@/page-components";
 import Head from "next/head";
-import { getKobSliderItemsData, getOperationsData } from "@/services/services";
-import { KobSliderData, OperationsData } from "@/interfaces/interfaces";
-import { GetServerSideProps, GetStaticProps } from "next";
 
-const Kob = ({
-  kobSliderData,
-  operationsData,
-}: {
-  kobSliderData: KobSliderData[];
-  operationsData: OperationsData[];
-}): JSX.Element => {
+const Kob = (): JSX.Element => {
   return (
     <>
       <Head>
@@ -27,11 +18,11 @@ const Kob = ({
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <KobCarousel props={kobSliderData} />
+        <KobCarousel />
         <Support />
         <BusinessLoans />
         <TradeFinance />
-        <OtherOperations props={operationsData} />
+        <OtherOperations />
         <KobNews />
       </main>
     </>
@@ -40,23 +31,23 @@ const Kob = ({
 
 export default withLayout(Kob);
 
-export async function getServerSideProps({}: GetServerSideProps) {
-  try {
-    const kobSliderData = await getKobSliderItemsData();
-    const operationsData = await getOperationsData();
+// export async function getServerSideProps({}: GetServerSideProps) {
+//   try {
+//     const kobSliderData = await getKobSliderItemsData();
+//     const operationsData = await getOperationsData();
 
-    if (!kobSliderData && !operationsData) {
-      return {
-        notFound: true,
-      };
-    }
+//     if (!kobSliderData && !operationsData) {
+//       return {
+//         notFound: true,
+//       };
+//     }
 
-    return {
-      props: { kobSliderData, operationsData },
-    };
-  } catch {
-    return {
-      props: null,
-    };
-  }
-}
+//     return {
+//       props: { kobSliderData, operationsData },
+//     };
+//   } catch {
+//     return {
+//       props: null,
+//     };
+//   }
+// }

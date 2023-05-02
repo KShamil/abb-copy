@@ -1,5 +1,5 @@
-import { CardData } from '@/interfaces/interfaces';
+import { DetailedHTMLProps, HTMLAttributes } from 'react';
 
-export interface SimpleTransitionsProps {
-    card:CardData[];
+export interface SimpleTransitionsProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>,HTMLDivElement> {
+   
 }
