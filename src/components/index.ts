@@ -8,3 +8,4 @@ export * from './KobSliderItems/KobSliderItems';
 export * from './PersonalSliderItems/PersonalSliderItems';
 export * from './OperationsCard/OperationsCard';
 export * from './Dialog/Dialog';
+export * from './MobileAccordion/MobileAccordion';

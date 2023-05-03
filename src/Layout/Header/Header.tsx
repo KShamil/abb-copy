@@ -11,7 +11,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import LogoIcon from "./logo.svg";
 import Image from "next/image";
 import Link from "next/link";
-import { Button } from "@/components";
+import { Button, MobileAccordion } from "@/components";
 import { motion } from "framer-motion";
 import { useRouter } from "next/router";
 
@@ -86,6 +86,12 @@ export const Header: React.FC = ({}: HeaderProps): JSX.Element => {
   };
 
   const router = useRouter();
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
 
   return (
     <header className={styles.header}>
@@ -249,16 +255,23 @@ export const Header: React.FC = ({}: HeaderProps): JSX.Element => {
           </ul>
         </div>
         <div className={styles.middleRight}>
-          <Link
-            href="https://abb-bank.az/az/internet-bankchiliq"
-            className={styles.internetBanking}
-          >
+          <Link href="" className={styles.internetBanking}>
             <FontAwesomeIcon
               icon={faCircleArrowRight}
               className={styles.icon}
             />
             <span>İnternet Bankçılıq</span>
           </Link>
+          <button
+            className={`${styles.mobileMenuBtn} ${
+              isOpen ? styles.closeMobileBtn : ""
+            }`}
+            onClick={toggleMenu}
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
         </div>
         <motion.div
           initial={{ opacity: 1 }}
@@ -412,6 +425,22 @@ export const Header: React.FC = ({}: HeaderProps): JSX.Element => {
             </div>
           </div>
         )}
+      </div>
+      <div
+        className={`${styles.mobileMenu} ${
+          isOpen ? styles.showMobileMenu : ""
+        }`}
+      >
+        <div className={styles.mobileInternetBankingContainer}>
+          <Link href="" className={styles.mobileInternetBanking}>
+            <FontAwesomeIcon
+              icon={faCircleArrowRight}
+              className={styles.icon}
+            />
+            <span>İnternet Bankçılıq</span>
+          </Link>
+        </div>
+        <MobileAccordion/>
       </div>
     </header>
   );

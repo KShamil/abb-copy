@@ -6,7 +6,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Dialog.module.scss";
 
 export default function DialogWindow() {
@@ -56,12 +56,13 @@ export default function DialogWindow() {
                   ilə onlayn əldə edin!
                 </span>
                 <button className={styles.linkBtn}>3 dəqiqəyə al</button>
-                <button onClick={handleClose} className={styles.close}>Bağla</button>
+                <button onClick={handleClose} className={styles.close}>
+                  Bağla
+                </button>
               </div>
             </DialogContentText>
           </DialogContent>
-          <DialogActions>
-          </DialogActions>
+          <DialogActions></DialogActions>
         </Dialog>
       </div>
     </>
