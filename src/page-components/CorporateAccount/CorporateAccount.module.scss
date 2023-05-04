@@ -4,11 +4,12 @@
     justify-content: space-between;
     gap: 10px;
     margin-top: 10px;
-    
+
 
     .leftCard {
         position: relative;
         width: 50%;
+        min-height: 370px;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -39,8 +40,13 @@
 
         .image {
             overflow: hidden;
+
             .img {
-                transform: translateY(40px);
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                width: 269px;
+                height: 330px;
             }
         }
 
@@ -50,11 +56,11 @@
     .rightCard {
         position: relative;
         width: 50%;
+        min-height: 370px;
         display: flex;
         justify-content: space-between;
         align-items: center;
         background: #3c435e;
-        overflow: hidden;
 
         .info {
             margin-left: 50px;
@@ -65,7 +71,7 @@
                 line-height: 34px;
                 color: #FFFFFF;
                 margin-bottom: 20px;
-                
+
             }
 
             span {
@@ -81,8 +87,14 @@
         }
 
         .image {
-            margin-right: 120px;
-            transform: translateY(30px);
+
+            .img {
+                position: absolute;
+                bottom: 0;
+                right: 120px;
+                width: 269px;
+                height: 330px;
+            }
         }
 
     }
@@ -127,8 +139,8 @@
 
             .image {
                 .img {
-                    width: 100%;
-                    height: auto;
+                    width: 138px;
+                    height: 175px;
                 }
             }
         }
@@ -144,9 +156,10 @@
 
             .image {
                 margin-right: 0;
+
                 .img {
-                    width: 100%;
-                    height: auto;
+                    width: 138px;
+                    height: 175px;
                 }
             }
         }
@@ -173,7 +186,9 @@
             }
 
             .image {
-                transform: translateY(10px);
+                .img {
+                    align-self: bottom;
+                }
             }
 
         }
@@ -192,20 +207,10 @@
                 }
             }
 
-        }
-    }
-
-
-}
-
-
-@media screen and (max-width:450px) {
-    .wrapper {
-
-        .leftCard {
-
             .image {
-                transform: translateY(20px);
+                .img {
+                    right: 0;
+                }
             }
 
         }
@@ -215,63 +220,6 @@
 }
 
 
-@media screen and (max-width:400px) {
-    .wrapper {
-
-        .leftCard {
-
-            .image {
-                transform: translateY(30px);
-            }
-
-        }
-    }
 
 
-}
 
-@media screen and (max-width:350px) {
-    .wrapper {
-
-        .leftCard {
-
-            .image {
-                transform: translateY(50px);
-            }
-
-        }
-
-        .rightCard {
-
-            .image {
-                transform: translateY(50px);
-            }
-
-        }
-    }
-
-
-}
-
-@media screen and (max-width:320px) {
-    .wrapper {
-
-        .leftCard {
-
-            .image {
-                transform: translateY(70px);
-            }
-
-        }
-
-        .rightCard {
-
-            .image {
-                transform: translateY(65px);
-            }
-
-        }
-    }
-
-
-}

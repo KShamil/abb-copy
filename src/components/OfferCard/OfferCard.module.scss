@@ -9,6 +9,14 @@
     border-radius: 10px;
     overflow: hidden;
 
+    .image {
+        display: flex;
+        justify-content: center;
+        .photo {
+            align-self: bottom;
+        }
+    }
+
     .info {
         padding: 40px;
         
@@ -20,8 +28,6 @@
         }
 
         .description {
-            min-height: 90px;
-            margin-bottom: 40px;
 
             span {
                 word-wrap: break-word;
@@ -77,6 +83,28 @@
 
         .info {
             padding: 30px;
+        }
+    }
+}
+
+
+@media screen and (max-width:600px) {
+    .wrapper {
+        .info {
+            h4 {
+                font-size: 18px;
+            }
+
+            .description {
+                span {
+                    font-size: 13px;
+                }
+            }
+
+            .link {
+                font-size: 13px;
+                left: 30px;
+            }
         }
     }
 }

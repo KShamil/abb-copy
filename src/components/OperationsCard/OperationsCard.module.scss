@@ -9,9 +9,18 @@
     border-radius: 10px;
     overflow: hidden;
 
+    .image {
+        display: flex;
+        justify-content: center;
+
+        .photo {
+            align-self: bottom;
+        }
+    }
+
     .info {
         padding: 40px;
-        
+
 
         h4 {
             font-size: 20px;
@@ -68,10 +77,10 @@
 
         .image {
             text-align: center;
-            background:#F3F1EC;
+            background: #F3F1EC;
 
             .photo {
-                border-radius:10px 10px 0px 0px;
+                border-radius: 10px 10px 0px 0px;
             }
         }
 
@@ -81,11 +90,33 @@
     }
 }
 
+@media screen and (max-width:600px) {
+    .wrapper {
+        .info {
+            h4 {
+                font-size: 18px;
+            }
+
+            .description {
+                span {
+                    font-size: 13px;
+                }
+            }
+
+            .link {
+                font-size: 13px;
+                left: 30px;
+            }
+        }
+    }
+}
+
 @media screen and (max-width:422px) {
     .wrapper {
 
         .image {
             text-align: center;
+
             .photo {
                 width: 100%;
                 height: auto;

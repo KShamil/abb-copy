@@ -165,6 +165,22 @@
 @media screen and (max-width:600px) {
     .wrapper {
         .content {
+
+            .top {
+
+                .title {
+                    h2 {
+                        font-size: 22px;
+                    }
+                }
+                .news {
+                    .newsCard {
+                        h3 {
+                            font-size: 16px;
+                        }
+                    }
+                }
+            }
             .bottom {
                 .card {
                     min-height: 116px;

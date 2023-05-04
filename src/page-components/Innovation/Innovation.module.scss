@@ -3,11 +3,14 @@
     display: flex;
     justify-content: space-between;
     gap: 10px;
+    margin-top: 10px;
     margin-bottom: 100px;
+
 
     .leftCard {
         position: relative;
         width: 50%;
+        min-height: 370px;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -15,12 +18,17 @@
 
         .info {
             margin-left: 120px;
+            margin-bottom: 160px;
 
             h2 {
                 font-size: 25px;
                 line-height: 34px;
                 color: #FFFFFF;
-                margin-bottom: 120px;
+                margin-bottom: 20px;
+            }
+
+            span {
+                color: #FFFFFF;
             }
 
             .link {
@@ -32,28 +40,43 @@
         }
 
         .image {
-            align-self:bottom;
+            overflow: hidden;
+
+            .img {
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                width: 269px;
+                height: 330px;
+            }
         }
+
 
     }
 
     .rightCard {
         position: relative;
         width: 50%;
+        min-height: 370px;
         display: flex;
         justify-content: space-between;
         align-items: center;
         background: #5883dc;
-        overflow: hidden;
 
         .info {
             margin-left: 50px;
+            margin-bottom: 170px;
 
             h2 {
                 font-size: 25px;
                 line-height: 34px;
                 color: #FFFFFF;
-                margin-bottom: 150px;
+                margin-bottom: 20px;
+
+            }
+
+            span {
+                color: #FFFFFF;
             }
 
             .link {
@@ -65,8 +88,14 @@
         }
 
         .image {
-            margin-right: 120px;
-            transform: translateY(30px);
+
+            .img {
+                position: absolute;
+                bottom: 0;
+                right: 120px;
+                width: 269px;
+                height: 330px;
+            }
         }
 
     }
@@ -111,8 +140,8 @@
 
             .image {
                 .img {
-                    width: 100%;
-                    height: auto;
+                    width: 138px;
+                    height: 175px;
                 }
             }
         }
@@ -128,9 +157,10 @@
 
             .image {
                 margin-right: 0;
+
                 .img {
-                    width: 100%;
-                    height: auto;
+                    width: 138px;
+                    height: 175px;
                 }
             }
         }
@@ -150,12 +180,17 @@
                 h2 {
                     font-size: 15px;
                 }
+
+                span {
+                    font-size: 15px;
+                }
             }
 
             .image {
-                transform: translateY(20px);
+                .img {
+                    align-self: bottom;
+                }
             }
-
 
         }
 
@@ -167,6 +202,16 @@
                 h2 {
                     font-size: 15px;
                 }
+
+                span {
+                    font-size: 15px;
+                }
+            }
+
+            .image {
+                .img {
+                    right: 0;
+                }
             }
 
         }
@@ -175,35 +220,6 @@
 
 }
 
-@media screen and (max-width:400px) {
-    .wrapper {
-
-        .leftCard {
-            .image {
-                transform: translateY(30px);
-            }
-        }
-    }
 
 
-}
 
-
-@media screen and (max-width:320px) {
-    .wrapper {
-
-        .leftCard {
-            .image {
-                transform: translateY(63px);
-            }
-        }
-
-        .rightCard {
-            .image {
-                transform: translateY(45px);
-            }
-        }
-    }
-
-
-}
