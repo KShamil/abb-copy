@@ -59,3 +59,24 @@
     border: 1px solid #FFFFFF;
     cursor: pointer;
 }
+
+.creditBtn {
+    padding: 15px 35px;
+    background: #3b8ae0;
+    border-radius: 5px;
+    color: #FFFFFF;
+    font-size: 15px;
+    border: 1px solid #3b8ae0;
+    cursor: pointer;
+    transition: 0.3s all;
+
+    &:hover {
+        opacity: 0.8;
+    }
+}
+
+@media screen and (max-width:768px) {
+    .creditBtn {
+        width: 100%;
+    }
+}

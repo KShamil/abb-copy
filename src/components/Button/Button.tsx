@@ -10,6 +10,7 @@ export const Button = ({ appearance, children, className, ...props}: ButtonProps
         [styles.cardBtn]:appearance == 'card-btn',
         [styles.sliderBtn]:appearance == 'slider-btn',
         [styles.corporateSliderBtn]:appearance == 'corporate-slider-btn',
+        [styles.creditBtn]:appearance == 'credit-btn',
     })}>
         {children}
     </button>

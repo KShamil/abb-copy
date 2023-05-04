@@ -61,23 +61,34 @@
                 justify-content: center;
                 gap: 15px;
 
-                .info {
+                .top {
                     display: flex;
                     flex-direction: column;
                     justify-content: center;
-                    gap: 5px;
+                    gap: 15px;
 
-                    span {
-                        font-size: 40px;
-                        color: var(--black);
-                        font-weight: bold;
-                    }
+                    .info {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        gap: 5px;
 
-                    small {
-                        font-size: 16px;
-                        color: var(--black);
-                        font-weight: bold;
+                        span {
+                            font-size: 40px;
+                            color: var(--black);
+                            font-weight: bold;
+                        }
+
+                        small {
+                            font-size: 16px;
+                            color: var(--black);
+                            font-weight: bold;
+                        }
                     }
+                }
+
+                .button {
+                    margin-top: 35px;
                 }
             }
         }
@@ -104,8 +115,32 @@
                 width: 100%;
 
                 .payment {
-                    flex-direction: row;
-                    gap: 50px;
+                    .top {
+                        flex-direction: row;
+                        gap: 50px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width:768px) {
+    .wrapper {
+        padding: 0 15px;
+
+        h2 {
+            font-size: 22px;
+        }
+
+        .content {
+            .right {
+                .payment {
+                    width: 100%;
+                    
+                    .top {
+                        justify-content: flex-start;
+                    }
                 }
             }
         }
@@ -124,9 +159,11 @@
         .content {
             .right {
                 .payment {
-                    .info {
-                        span {
-                            font-size: 24px;
+                    .top {
+                        .info {
+                            span {
+                                font-size: 24px;
+                            }
                         }
                     }
                 }

@@ -361,15 +361,13 @@
 
     .mobileMenu {
         display: none;
-        max-height: calc(100vh - 100px);
-        overflow: auto;
 
         .mobileInternetBankingContainer {
             width: 100%;
             padding: 8px;
             display: flex;
             justify-content: center;
-            align-items:center;
+            align-items: center;
             background: #0056c1;
 
             .mobileInternetBanking {
@@ -485,7 +483,7 @@
                     background: transparent;
                     border: none;
                     cursor: pointer;
-                  
+
                     span {
                         width: 35px;
                         height: 2px;
@@ -515,14 +513,14 @@
                     span:nth-child(1) {
                         transform: translateY(13px) rotate(45deg);
                     }
-            
+
                     span:nth-child(2) {
                         opacity: 0;
                     }
-            
+
                     span:nth-child(3) {
                         transform: translateY(-10px) rotate(-45deg);
-            
+
                     }
                 }
             }
@@ -546,17 +544,21 @@
 
         .mobileMenu {
             display: block;
-            background: white;
-            height: 100vh;
+            position: absolute;
+            top: 124px;
+            background-color: white;
             width: 100%;
-            transform: translateX(100%);
+            max-height: calc(100vh - 124px);
+            overflow-y: auto;
+            transform: translateX(600px);
             transition: 0.5s all;
         }
 
         .showMobileMenu {
             display: block;
+            position: absolute;
+            top: 124px;
             background: white;
-            height: 100vh;
             width: 100%;
             transform: translateX(0);
             transition: 0.5s all;

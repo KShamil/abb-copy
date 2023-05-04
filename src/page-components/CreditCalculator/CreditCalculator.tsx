@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "./CreditCalculator.module.scss";
 import { CreditCalculatorProps } from "./CreditCalculator.props";
+import { Button } from "@/components";
 
 export function CreditCalculator({
   ...props
@@ -37,14 +38,10 @@ export function CreditCalculator({
     const monthlyInterestRate = interestRate / 1200;
     const total =
       loanAmount *
-      ((monthlyInterestRate *
-        Math.pow(1 + monthlyInterestRate, loanTerm)) /
+      ((monthlyInterestRate * Math.pow(1 + monthlyInterestRate, loanTerm)) /
         (Math.pow(1 + monthlyInterestRate, loanTerm) - 1));
     return (total * loanTerm).toFixed(2);
   };
-  
-  
-  
 
   return (
     <div {...props} className={styles.wrapper}>
@@ -97,13 +94,18 @@ export function CreditCalculator({
         </div>
         <div className={styles.right}>
           <div className={styles.payment}>
-            <div className={styles.info}>
-              <span>{monthlyPayment()} ₼</span>
-              <small>Aylıq ödəniş</small>
+            <div className={styles.top}>
+              <div className={styles.info}>
+                <span>{monthlyPayment()} ₼</span>
+                <small>Aylıq ödəniş</small>
+              </div>
+              <div className={styles.info}>
+                <span>{totalAmount()} ₼</span>
+                <small>Ümumi məbləğ</small>
+              </div>
             </div>
-            <div className={styles.info}>
-              <span>{totalAmount()} ₼</span>
-              <small>Ümumi məbləğ</small>
+            <div className={styles.button}>
+              <Button appearance="credit-btn">Kredit alın</Button>
             </div>
           </div>
         </div>

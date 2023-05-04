@@ -16,6 +16,7 @@ export const CurrencyConverter: React.FC = () => {
     USD: { buy: 1.702, sell: 1.697 },
     EUR: { buy: 1.8927, sell: 1.7999 },
     RUB: { buy: 0.0239, sell: 0.0177 },
+    AZN: { buy: 1, sell: 1 },
   };
 
   const handleInputChange = (

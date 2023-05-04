@@ -65,21 +65,45 @@ export const Header: React.FC = ({}: HeaderProps): JSX.Element => {
   };
 
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY || window.pageYOffset;
-      if (scrollY >= 50 && prevScrollY < scrollY) {
-        setBlockVisible(false);
-      } else {
-        setBlockVisible(true);
-      }
-      setPrevScrollY(scrollY);
-    };
+    if (typeof window !== "undefined") {
+      const handleScroll = () => {
+        const screenWidth = window.innerWidth;
+        const scrollY = window.scrollY || window.pageYOffset;
+        if (screenWidth > 600 && scrollY >= 50 && prevScrollY < scrollY) {
+          setBlockVisible(false);
+        } else {
+          setBlockVisible(true);
+        }
+        setPrevScrollY(scrollY);
+      };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+      const handleResize = () => {
+        setScreenWidth(window.innerWidth);
+      };
+
+      window.addEventListener("scroll", handleScroll);
+      window.addEventListener("resize", handleResize);
+
+      return () => {
+        window.removeEventListener("scroll", handleScroll);
+        window.removeEventListener("resize", handleResize);
+      };
+    }
   }, [prevScrollY]);
+
+  const [screenWidth, setScreenWidth] = useState(
+    typeof window !== "undefined" ? window.innerWidth : 0
+  );
+
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenWidth(window.innerWidth);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const handleOpenSeacrh = () => {
     setOpenSearch((prev) => !prev);
@@ -140,7 +164,7 @@ export const Header: React.FC = ({}: HeaderProps): JSX.Element => {
                   </li>
                 </ul>
               </nav>
-              <Link href="https://careers.abb-bank.az/?_gl=1*1xoqd9z*_ga*MTk2MDU3MjE5NC4xNjc4MDkwNjgz*_ga_XS2V03MMNQ*MTY4MDI4ODgwMS4xMS4xLjE2ODAyOTAwNzAuOC4wLjA.">
+              <Link href="#">
                 <Button appearance="header-btn">Karyera portalı</Button>
               </Link>
             </div>
@@ -440,7 +464,7 @@ export const Header: React.FC = ({}: HeaderProps): JSX.Element => {
             <span>İnternet Bankçılıq</span>
           </Link>
         </div>
-        <MobileAccordion/>
+        <MobileAccordion />
       </div>
     </header>
   );
