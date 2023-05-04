@@ -1,57 +1,44 @@
 import React, { ChangeEvent, useState } from "react";
 import styles from "./CurrencyConverter.module.scss";
 
-interface CurrencyRates {
-  [key: string]: { buy: number; sell: number };
-}
+type Currency = "AZN" | "USD" | "EUR" | "RUB";
+
+type CurrencyRates = {
+  [key in Currency]: number;
+};
+
+const currencyRates: CurrencyRates = {
+  USD: 0.5875,
+  EUR: 0.5205,
+  RUB: 40.6504,
+  AZN: 1,
+};
 
 export const CurrencyConverter: React.FC = () => {
-  const [inputAmount, setInputAmount] = useState<string>("");
-  const [outputAmount, setOutputAmount] = useState<string>("");
-  const [selectedCurrency, setSelectedCurrency] = useState<string>("USD");
-  const [selectedCurrencyOutput, setSelectedCurrencyOutput] =
-    useState<string>("EUR");
+  const [amount, setAmount] = useState<number>(0);
+  const [fromCurrency, setFromCurrency] = useState<Currency>("AZN");
+  const [toCurrency, setToCurrency] = useState<Currency>("USD");
 
-  const currencyRates: CurrencyRates = {
-    USD: { buy: 1.702, sell: 1.697 },
-    EUR: { buy: 1.8927, sell: 1.7999 },
-    RUB: { buy: 0.0239, sell: 0.0177 },
-    AZN: { buy: 1, sell: 1 },
+  const handleAmountChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setAmount(parseFloat(event.target.value));
   };
 
-  const handleInputChange = (
-    e: ChangeEvent<HTMLInputElement>,
-    inputType: string
+  const handleFromCurrencyChange = (
+    event: React.ChangeEvent<HTMLSelectElement>
   ) => {
-    const amount = e.target.value;
-    setInputAmount(amount);
-
-    // Выполняем конвертацию при вводе числа в любой из инпутов
-    if (!isNaN(Number(amount))) {
-      const currency = currencyRates[selectedCurrency];
-      const currencyOutput = currencyRates[selectedCurrencyOutput];
-      let convertedAmount: number;
-      if (inputType === "inputAmount") {
-        convertedAmount = Number(amount) * currency.sell;
-        setOutputAmount(convertedAmount.toFixed(2));
-      } else if (inputType === "outputAmount") {
-        convertedAmount = Number(amount) / currency.buy; // Изменяем на обратное деление
-        setInputAmount((convertedAmount * currencyOutput.buy).toFixed(2));
-      }
-    } else {
-      setOutputAmount("");
-    }
+    setFromCurrency(event.target.value as Currency);
   };
 
-  const handleCurrencyChange = (
-    e: ChangeEvent<HTMLSelectElement>,
-    inputType: string
+  const handleToCurrencyChange = (
+    event: React.ChangeEvent<HTMLSelectElement>
   ) => {
-    if (inputType === "inputAmount") {
-      setSelectedCurrency(e.target.value);
-    } else if (inputType === "outputAmount") {
-      setSelectedCurrencyOutput(e.target.value);
-    }
+    setToCurrency(event.target.value as Currency);
+  };
+
+  const convertCurrency = () => {
+    const convertedAmount =
+      amount * (currencyRates[toCurrency] / currencyRates[fromCurrency]);
+    return convertedAmount.toFixed(2);
   };
 
   return (
@@ -67,15 +54,23 @@ export const CurrencyConverter: React.FC = () => {
                 <th>Alış</th>
               </tr>
             </thead>
-            {Object.keys(currencyRates).map((currency) => (
-              <tbody key={currency}>
-                <tr>
-                  <td>{currency}</td>
-                  <td>{currencyRates[currency].sell}</td>
-                  <td>{currencyRates[currency].buy}</td>
-                </tr>
-              </tbody>
-            ))}
+            <tbody>
+              <tr>
+                <td className={styles.currency}>USD</td>
+                <td>1.7020</td>
+                <td>1.6970</td>
+              </tr>
+              <tr>
+                <td className={styles.currency}>EUR</td>
+                <td>1.9214</td>
+                <td>1.8272</td>
+              </tr>
+              <tr>
+                <td className={styles.currency}>RUB</td>
+                <td>0.0246</td>
+                <td>0.0182</td>
+              </tr>
+            </tbody>
           </table>
         </div>
         <div className={styles.right}>
@@ -84,14 +79,11 @@ export const CurrencyConverter: React.FC = () => {
             <div className={styles.inputContainer}>
               <input
                 placeholder="Satıram"
-                type="text"
-                value={inputAmount}
-                onChange={(e) => handleInputChange(e, "inputAmount")}
+                type="number"
+                value={amount}
+                onChange={handleAmountChange}
               />
-              <select
-                value={selectedCurrency}
-                onChange={(e) => handleCurrencyChange(e, "inputAmount")}
-              >
+              <select value={fromCurrency} onChange={handleFromCurrencyChange}>
                 {Object.keys(currencyRates).map((currency) => (
                   <option key={currency} value={currency}>
                     {currency}
@@ -102,14 +94,10 @@ export const CurrencyConverter: React.FC = () => {
             <div className={styles.inputContainer}>
               <input
                 placeholder="Alıram"
-                type="text"
-                value={outputAmount}
-                onChange={(e) => handleInputChange(e, "outputAmount")}
+                type="number"
+                value={`${convertCurrency()}`}
               />
-              <select
-                value={selectedCurrencyOutput}
-                onChange={(e) => handleCurrencyChange(e, "outputAmount")}
-              >
+              <select value={toCurrency} onChange={handleToCurrencyChange}>
                 {Object.keys(currencyRates).map((currency) => (
                   <option key={currency} value={currency}>
                     {currency}
@@ -123,5 +111,3 @@ export const CurrencyConverter: React.FC = () => {
     </section>
   );
 };
-
-export default CurrencyConverter;

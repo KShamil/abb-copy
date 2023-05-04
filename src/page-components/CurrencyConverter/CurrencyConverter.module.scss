@@ -21,6 +21,10 @@
             table {
                 width: 100%;
 
+                .currency {
+                    font-weight: bold;
+                }
+
                 th, td {
                     text-align: start;
                 }
