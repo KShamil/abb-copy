@@ -5,10 +5,12 @@
     padding-bottom: 100px;
     margin-bottom: 100px;
 
-    .businessCards {
-        display: flex;
-        justify-content: center;
-        align-items: stretch;
-        gap: 20px;
-}
+    .swiper {
+        .businessCards {
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            gap: 50px;
+        }
+    }
 }

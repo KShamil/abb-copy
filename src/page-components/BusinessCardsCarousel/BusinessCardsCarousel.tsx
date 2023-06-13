@@ -18,10 +18,10 @@ export const BusinessCardsCarousel =
           <Swiper
             navigation={true}
             modules={[Navigation, Pagination]}
-            slidesPerView={3}
-            centeredSlides={false}
-            slidesPerGroupSkip={1}
-            spaceBetween={10}
+            slidesPerView={4}
+            centeredSlides={true}
+            spaceBetween={100}
+            className='swiper'
             pagination={{
               clickable: true,
               el: ".myPagination",
@@ -36,8 +36,8 @@ export const BusinessCardsCarousel =
                 spaceBetween: 0,
               },
               1024: {
-                slidesPerView: 3,
-                spaceBetween: 0,
+                slidesPerView: 4,
+                spaceBetween: 100,
               },
             }}
           >
